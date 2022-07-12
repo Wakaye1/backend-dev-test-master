@@ -1,0 +1,22 @@
+{% extends 'crm/base.html' %}
+{% block header %}
+Update all the clients
+{% endblock %}
+
+
+{% block content %}
+<h1>Update Client's Wallet</h1>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+    <!-- Security token -->
+    {% csrf_token %}
+
+    <!-- Using the formset -->
+    {{ form.as_p }}
+
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

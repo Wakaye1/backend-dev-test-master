@@ -1,0 +1,12 @@
+{% extends 'crm/base.html' %}
+
+{% block content %}
+<!-- Create a Form -->
+<form method="POST">
+    <!-- Security token by Django -->
+    {% csrf_token %}
+    Are you sure you want to delete {{client.full_name|title}}'s account and all data related their account ?
+    <button type="submit" class="btn btn-danger">Yes</button>
+    <a href="{% url 'all_clients' %}">Cancel </a>
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'crm/base.html' %}
+{% block header %}
+All the clients
+{% endblock %}
+
+{% block content %}
+<h1>All clients</h1>
+
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Full Name</th>
+            <th scope="col">Update Client Account</th>
+            <th scope="col">Delete Client Account</th>
+            <th scope="col">Available Balance</th>
+            <th scope="col">Total Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in all_clients %}
+        <tr>
+            <td>{{ client.full_name|title }}</td>
+            <td>
+                <a href="{% url 'update_client' client.cid %}"><button type="button"
+                        class="btn btn-primary">Update</button></a>
+            </td>
+            <td><a href="{% url 'delete_client' client.cid %}"><button type="button"
+                        class="btn btn-danger">Delete</button></a></td>
+            {% if client.clients %}
+            <td>{{ client.clients.available_balance }} <a href="{% url 'update_client_wallet' client.cid %}"><button
+                        type="button" class="btn btn-primary btn-sm">Update
+                        Wallet</button></a></td>
+            <td>{{ client.clients.total_balance }}</td>
+            {% else %}
+            <td><a href="{% url 'create_client_wallet' client.cid %}"><button type="button"
+                        class="btn btn-primary">Create
+                        Wallet</button></a></td>
+            <td></td>
+            {% endif %}
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
